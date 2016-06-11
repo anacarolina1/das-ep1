@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include, patterns
+from hw1 import views
 
-urlpatterns = [
+urlpatterns =  patterns('hw1.views',
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^hw1/', include('hw1.urls')),
+)
+
+
