@@ -25,7 +25,7 @@ def index(request):
 def present_output(form):
 
     ''' Show pages with the results.'''
-    
+
     r = form.r
     r2 = form.r2
     r3 = form.r3
@@ -38,6 +38,3 @@ def present_output(form):
         ' tangente (%s) = %s ' % (r3, t)
 
         ])
-
-
-

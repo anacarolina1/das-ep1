@@ -7,7 +7,7 @@ class InputForm(forms.ModelForm):
 	    applications if we by convention apply the name Input 
 	    for the class holding the data. '''
 
-    class Meta:
-        model = Input
-        fields = ['r', 'r2', 'r3']
+	class Meta:
+		model = Input
+		fields = ['r', 'r2', 'r3']
 
