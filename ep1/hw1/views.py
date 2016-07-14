@@ -4,37 +4,63 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponse
 from forms import InputForm
+from django.views.generic import View, TemplateView
 from calculate import calculate_sin, calculate_cos, calculate_tan
 
-def index(request):
+class Home(TemplateView):
+    template_name = 'home.html'
 
-    ''' Defines the actions we want to perform when invoking 
-        the URL ( here http://127.0.0.1:8000/hw1/).'''
+    def get(self, request, *args, **kwargs):
+        return render(request, 'home.html')
 
+def sen(request):
+    s = None  # initial value of result
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            return present_output(form)
+            radianos = form.radianos
+            s = calculate_sin(radianos)
     else:
         form = InputForm()
 
-    return render_to_response('hw1.html',
-            {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('sen.html',
+            {'form': form,
+             's': '%.5f' % s if isinstance(s, float) else ''
+             }, context_instance=RequestContext(request))
 
-def present_output(form):
+def cos(request):
+    c = None  # initial value of result
+    if request.method == 'POST':
+        form = InputForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            radianos = form.radianos
+            c = calculate_cos(radianos)
+    else:
+        form = InputForm()
 
-    ''' Show pages with the results.'''
+    return render_to_response('cos.html',
+            {'form': form,
+             'c': '%.5f' % c if isinstance(c, float) else ''
+             }, context_instance=RequestContext(request))
 
-    r = form.r
-    r2 = form.r2
-    r3 = form.r3
-    s = calculate_sin(r)
-    c = calculate_cos(r2)
-    t = calculate_tan(r3)
-    return HttpResponse([
-        ' seno (%s) = %s --' % (r, s),
-        ' cosseno (%s) = %s --' % (r2, c),
-        ' tangente (%s) = %s ' % (r3, t)
+def tan(request):
+    t = None  # initial value of result
+    if request.method == 'POST':
+        form = InputForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            radianos = form.radianos
+            t = calculate_tan(radianos)
+    else:
+        form = InputForm()
 
-        ])
+    return render_to_response('tan.html',
+            {'form': form,
+             't': '%.5f' % t if isinstance(t, float) else ''
+             }, context_instance=RequestContext(request))
+
+
+
+

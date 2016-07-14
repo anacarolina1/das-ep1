@@ -9,5 +9,5 @@ class InputForm(forms.ModelForm):
 
 	class Meta:
 		model = Input
-		fields = ['r', 'r2', 'r3']
+		fields = '__all__'
 

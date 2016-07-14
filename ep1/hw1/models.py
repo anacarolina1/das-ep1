@@ -10,6 +10,5 @@ class Input(models.Model):
 	''' The Input class lists variables representing data as static class attributes.
 	    Here is used FloatField to represent a floating-point number. '''
 	
-	r = models.FloatField()
-	r2 = models.FloatField()
-	r3 = models.FloatField()
+	radianos = models.FloatField()
+	

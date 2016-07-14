@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.conf.urls import include, patterns
 from hw1 import views
 
-urlpatterns =  patterns('hw1.views',
+urlpatterns =  patterns(
     url(r'^admin/', admin.site.urls),
-    url(r'^hw1/', include('hw1.urls')),
+    url(r'', include('hw1.urls')),
 )
 
 
